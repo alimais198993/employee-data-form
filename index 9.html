@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>نموذج معلومات الموظف مع روابط الصور</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+        function previewImages() {
+            if (attachments.length === 0) {
+                alert("لا توجد صور لمعاينتها.");
+                return;
+            }
+            let list = "";
+            attachments.forEach((files, index) => {
+                const prefix = String(index + 1).padStart(3, '0');
+                const names = ["صورة_شخصية", "بطاقة_موحدة", "بطاقة_سكن", "جواز_سفر", "هوية_الدائرة"];
+                list += `\nموظف ${index + 1}:\n`;
+                names.forEach((name, i) => {
+                    list += ` - ${prefix}_${name}.jpg\n`;
+                });
+            });
+            alert("ملفات الصور:\n" + list);
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+        function previewImages() {
+            if (attachments.length === 0) {
+                alert("لا توجد صور لمعاينتها.");
+                return;
+            }
+            let list = "";
+            attachments.forEach((files, index) => {
+                const prefix = String(index + 1).padStart(3, '0');
+                const names = ["صورة_شخصية", "بطاقة_موحدة", "بطاقة_سكن", "جواز_سفر", "هوية_الدائرة"];
+                list += `\nموظف ${index + 1}:\n`;
+                names.forEach((name, i) => {
+                    list += ` - ${prefix}_${name}.jpg\n`;
+                });
+            });
+            alert("ملفات الصور:\n" + list);
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+        function previewImages() {
+            if (attachments.length === 0) {
+                alert("لا توجد صور لمعاينتها.");
+                return;
+            }
+            let list = "";
+            attachments.forEach((files, index) => {
+                const prefix = String(index + 1).padStart(3, '0');
+                const names = ["صورة_شخصية", "بطاقة_موحدة", "بطاقة_سكن", "جواز_سفر", "هوية_الدائرة"];
+                list += `\nموظف ${index + 1}:\n`;
+                names.forEach((name, i) => {
+                    list += ` - ${prefix}_${name}.jpg\n`;
+                });
+            });
+            alert("ملفات الصور:\n" + list);
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f5f7fa, #cfd9df);
+            padding: 30px;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 850px;
+            margin: auto;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .employee-count {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .preview-button {
+            margin-top: 5px;
+            background-color: #28a745;
+        }
+        .preview-button:hover {
+            background-color: #1e7e34;
+        }
+    
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; padding: 30px; }
+        .form-container { background: white; padding: 20px; border-radius: 8px; width: 100%; max-width: 750px; margin: auto; }
+        label { margin-top: 10px; font-weight: bold; }
+        input { display: block; width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; margin-top: 10px; }
+        .employee-count { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>نموذج معلومات الموظف الكامل مع روابط الصور</h2>
+
+        <label>الاسم الكامل:</label>
+        <input type="text" id="name">
+        <label>العنوان الوظيفي:</label>
+        <input type="text" id="title">
+        <label>التحصيل الدراسي:</label>
+        <input type="text" id="education">
+        <label>سنة التخرج:</label>
+        <input type="text" id="graduation">
+        <label>تاريخ التعيين:</label>
+        <input type="date" id="appointment">
+        <label>جهة التعيين:</label>
+        <input type="text" id="department">
+        <label>مكان العمل الحالي:</label>
+        <input type="text" id="workplace">
+        <label>السكن:</label>
+        <input type="text" id="address">
+        <label>الحالة الزوجية:</label>
+        <input type="text" id="marital">
+        <label>رقم الهاتف:</label>
+        <input type="text" id="phone">
+        <label>البريد الإلكتروني:</label>
+        <input type="email" id="email">
+
+        <label>الصورة الشخصية:</label>
+        <input type="file" id="photo" accept="image/*">
+        <label>البطاقة الوطنية الموحدة:</label>
+        <input type="file" id="idCard" accept="image/*">
+        <label>بطاقة السكن:</label>
+        <input type="file" id="addressCard" accept="image/*">
+        <label>جواز السفر:</label>
+        <input type="file" id="passport" accept="image/*">
+        <label>هوية الدائرة:</label>
+        <input type="file" id="workID" accept="image/*">
+
+        <button onclick="addEmployee()">إضافة الموظف</button>
+        
+        <div id="passwordSection" style="margin-top: 20px;">
+            <label>أدخل الرمز السري (Am1234) لرؤية وتحميل البيانات:</label>
+            <input type="password" id="password">
+            <button onclick="checkPassword()">تحقق</button><button class="preview-button" onclick="previewImages()">معاينة الصور</button>
+        </div>
+
+        <div id="previewSection" style="display: none;">
+            <h3>الموظفون المدخلون:</h3>
+            <table border="1" style="width:100%; margin-bottom: 15px;" id="previewTable">
+                <thead>
+                    <tr>
+                        <th>الاسم</th><th>الوظيفة</th><th>التحصيل</th><th>تخرج</th>
+                        <th>تعيين</th><th>الجهة</th><th>العمل</th><th>السكن</th>
+                        <th>الحالة</th><th>الهاتف</th><th>الإيميل</th><th>روابط الصور</th><th>حذف</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeRows"></tbody>
+            </table>
+            <button onclick="exportData()">تحميل البيانات والمرفقات</button>
+        </div>
+
+        <div class="employee-count" id="countDisplay">عدد الموظفين المدخلين: 0</div>
+    </div>
+
+    <script>
+        let employees = [];
+        let attachments = [];
+        let attemptsLeft = 5;
+
+        function addEmployee() {
+            const fields = [
+                "name", "title", "education", "graduation", "appointment", "department",
+                "workplace", "address", "marital", "phone", "email"
+            ];
+            const employee = fields.map(id => document.getElementById(id).value);
+            const files = [
+                document.getElementById("photo").files[0],
+                document.getElementById("idCard").files[0],
+                document.getElementById("addressCard").files[0],
+                document.getElementById("passport").files[0],
+                document.getElementById("workID").files[0]
+            ];
+
+            if (files.some(file => !file)) {
+                alert("يرجى تحميل جميع المرفقات المطلوبة.");
+                return;
+            }
+
+            employees.push(employee);
+            attachments.push(files);
+            document.getElementById("countDisplay").textContent = "عدد الموظفين المدخلين: " + employees.length;
+            document.querySelectorAll("input").forEach(input => input.value = "");
+        }
+
+        async function exportData() {
+            const zip = new JSZip();
+            const headers = ["الاسم", "الوظيفة", "التحصيل الدراسي", "سنة التخرج", "تاريخ التعيين", "جهة التعيين", "مكان العمل", "السكن", "الحالة الزوجية", "الهاتف", "البريد الإلكتروني", "روابط الصور"];
+            const data = [headers];
+
+            for (let i = 0; i < employees.length; i++) {
+                const emp = employees[i];
+                const files = attachments[i];
+                const prefix = String(i + 1).padStart(3, '0');
+                const names = ["صورة_شخصية", "بطاقة_موحدة", "بطاقة_سكن", "جواز_سفر", "هوية_الدائرة"];
+                const fileLinks = [];
+
+                for (let j = 0; j < files.length; j++) {
+                    const fileName = `${prefix}_${names[j]}.jpg`;
+                    const arrayBuffer = await files[j].arrayBuffer();
+                    zip.file(fileName, arrayBuffer);
+                    fileLinks.push(fileName);
+                }
+
+                data.push([...emp, fileLinks.join(" | ")]);
+            }
+
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "الموظفون");
+            const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+            zip.file("بيانات_الموظفين.xlsx", excelBuffer);
+
+            zip.generateAsync({ type: "blob" }).then(content => {
+                saveAs(content, "كل_بيانات_الموظفين.zip");
+            });
+        }
+
+        function checkPassword() {
+            const entered = document.getElementById("password").value;
+            if (attemptsLeft <= 0) {
+                alert("انتهت المحاولات، يرجى إعادة تحميل الصفحة.");
+                return;
+            }
+
+            if (entered === "Am1234") {
+                const tableBody = document.querySelector("#previewTable tbody");
+                tableBody.innerHTML = "";
+
+                employees.forEach((emp, index) => {
+                    const row = document.createElement("tr");
+                    emp.forEach(data => {
+                        const cell = document.createElement("td");
+                        cell.textContent = data;
+                        row.appendChild(cell);
+                    });
+
+                    const linksCell = document.createElement("td");
+                    linksCell.textContent = attachments[index].map((_, j) =>
+                        `${String(index + 1).padStart(3, '0')}_${["صورة_شخصية", "بطاقة_موحدة", "بطاقة_سكن", "جواز_سفر", "هوية_الدائرة"][j]}.jpg`
+                    ).join(" | ");
+                    row.appendChild(linksCell);
+
+                    const deleteCell = document.createElement("td");
+                    const delBtn = document.createElement("button");
+                    delBtn.textContent = "حذف";
+                    delBtn.style.backgroundColor = "#dc3545";
+                    delBtn.style.color = "white";
+                    delBtn.style.border = "none";
+                    delBtn.style.padding = "5px";
+                    delBtn.style.cursor = "pointer";
+                    delBtn.onclick = () => {
+                        employees.splice(index, 1);
+                        attachments.splice(index, 1);
+                        document.getElementById("countDisplay").textContent = "عدد الموظفين المدخلين: " + employees.length;
+                        checkPassword();
+                    };
+                    deleteCell.appendChild(delBtn);
+                    row.appendChild(deleteCell);
+                    tableBody.appendChild(row);
+                });
+
+                document.getElementById("previewSection").style.display = "block";
+            } else {
+                attemptsLeft--;
+                alert("الرمز السري غير صحيح. تبقى " + attemptsLeft + " محاولة.");
+            }
+        }
+    
+        function previewImages() {
+            if (attachments.length === 0) {
+                alert("لا توجد صور لمعاينتها.");
+                return;
+            }
+            let list = "";
+            attachments.forEach((files, index) => {
+                const prefix = String(index + 1).padStart(3, '0');
+                const names = ["صورة_شخصية", "بطاقة_موحدة", "بطاقة_سكن", "جواز_سفر", "هوية_الدائرة"];
+                list += `\nموظف ${index + 1}:\n`;
+                names.forEach((name, i) => {
+                    list += ` - ${prefix}_${name}.jpg\n`;
+                });
+            });
+            alert("ملفات الصور:\n" + list);
+        }
+    </script>
+</body>
+</html>
